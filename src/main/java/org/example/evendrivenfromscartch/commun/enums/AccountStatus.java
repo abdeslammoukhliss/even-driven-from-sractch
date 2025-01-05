@@ -1,4 +1,5 @@
 package org.example.evendrivenfromscartch.commun.enums;
 
-public class AccountStatus {
+public enum AccountStatus {
+    CREATED,ACTIVATED,SUSPENDED
 }

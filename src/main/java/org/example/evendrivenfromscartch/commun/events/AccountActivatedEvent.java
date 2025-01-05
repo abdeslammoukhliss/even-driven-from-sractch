@@ -2,15 +2,14 @@ package org.example.evendrivenfromscartch.commun.events;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.example.evendrivenfromscartch.commun.enums.AccountStatus;
 
 @NoArgsConstructor
 @Getter
-public class AccountActivitedEvent extends BaseEvent<String>{
-    private double initialBalance;
-    private String currency;
-    public AccountActivitedEvent(String id, double initialBalance, String currency){
+public class AccountActivatedEvent extends BaseEvent<String>{
+    private AccountStatus status;
+    public AccountActivatedEvent(String id, AccountStatus accountStatus){
         super(id);
-        this.currency=currency;
-        this.initialBalance=initialBalance;
+        this.status=accountStatus;
     }
 }

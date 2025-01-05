@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # MySQL Service
+  mysql:
+    image: mysql
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root   # Set the root password for MySQL
+      MYSQL_DATABASE: axon_db             # Create a database 'axon_db'
+    ports:
+      - "3306:3306"                       # Expose MySQL on port 3306
+    volumes:
+      - mysql-data:/var/lib/mysql         # Persist MySQL data on the host machine
+
+  # phpMyAdmin Service
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: mysql                    # phpMyAdmin will connect to the 'mysql' service
+      PMA_USER: root                      # MySQL root user
+      PMA_PASSWORD: root         # Password for root user
+    ports:
+      - "8080:80"                         # Expose phpMyAdmin on port 8080
+    depends_on:
+      - mysql                             # Ensure phpMyAdmin starts after MySQL
+
+volumes:
+  mysql-data:                              # Persistent volume for MySQL data
